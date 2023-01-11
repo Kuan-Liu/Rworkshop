@@ -1,11 +1,66 @@
 ---
-title: "Rworkshop"
+title: "R Workshop for Bioscience"
+author: "Kuan Liu"
+subtitle: "CAF Jan 13, 2023"
+format: 
+  html: 
+    code-block-bg: true
 ---
 
-This is a Quarto website.
+# Welcome
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+-   Welcome to the R workshop for Bioscience!
+-   The workshop is intended for any Bioscience researchers with limited prior experience in R who is interested in learning how to use R to do data wrangling, data visualization, common statistical analyses.
+-   Workshop materials in the github repository [Rworkshop](https://github.com/Kuan-Liu/Rworkshop)
 
-```{r}
-1 + 1
-```
+# Learning Objectives
+
+At the end of the class, students will be able to:
+
+-   navigate R and R studio interface
+-   set up project and coding environment for data analysis
+-   efficiently handle datasets
+-   perform common data visualizations used in Bioscience
+-   conduct descriptive analysis in R
+-   conduct regression analysis in R
+
+# Schedule
+
+|     Time      |                        Topic                         |
+|:-------------:|:----------------------------------------------------:|
+|  9:00 - 9:10  |              [Introduction](index.qmd)               |
+|  9:10 - 9:45  |    [Session 1: Get Started with R](session1.qmd)     |
+| 9:45 - 10:00  |               Questions + Coffee break               |
+| 10:00 - 10:45 |  [Session 2: Data Visualization in R](session2.qmd)  |
+| 10:45 - 11:00 |               Questions + Coffee break               |
+| 11:00 - 11:45 | [Session 3: Statistical Analysis in R](session3.qmd) |
+| 11:45 - 12:00 |              Conclusions and Questions               |
+
+# In preparation for the workshop
+
+Participants are required to follow the next steps before the day of the workshop:
+
+1.  Install R and R Studio
+
+    -   Windows operating system
+        -   install R, <https://cran.r-project.org/bin/windows/base/>
+        -   install RStudio, <https://posit.co/download/rstudio-desktop/#download>
+    -   macOS operating system
+        -   install R, <https://cran.r-project.org/bin/macosx/>
+        -   install RStudio, <https://posit.co/download/rstudio-desktop/#download>
+
+2.  Verify access to the course page, <https://kuan-liu.github.io/Rworkshop/>
+
+3.  Clone or download the workshop repository: <https://github.com/Kuan-Liu/Rworkshop>
+
+# About me
+
+-  I am an Assistant Professor in Biostatistics and Health Services Research at the University of Toronto
+-  My primary research focuses on developing methodology for statistical inference with complex longitudinal data in comparative effectiveness research
+    -  causal inference
+    -  Bayesian statistics
+    -  longitudinal data analysis
+    -  joint modelling
+    -  bias analysis
+-  My ties to forestry and ecology `r emoji::emoji("evergreen_tree")`
+

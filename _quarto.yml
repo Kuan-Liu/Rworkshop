@@ -1,19 +1,52 @@
 project:
   type: website
+  title: "R Workshop, CAF 2023"
+  execute-dir: project
+  output-dir: docs
+  render: 
+      - index.qmd
+      - session1.qmd
+      - session2.qmd
+      - session3.qmd
+      - resources.qmd
 
 website:
-  title: "Rworkshop"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+  title: "Introduction to R and R modelling for Bioscience"
+  site-url: https://kuan-liu.github.io/Rworkshop/
+  repo-url: https://github.com/Kuan-Liu/Rworkshop
+  page-footer:
+    right: "This page is built with [Quarto](https://quarto.org/)."
+    left: "[Kuan Liu](https://www.kuan-liu.com), University of Toronto @ 2023"
 
+  navbar:
+    background: primary
+    right: 
+      - icon: github
+        href: https://github.com/Kuan-Liu/Rworkshop
+        
+  sidebar: 
+    style: docked
+    search: true
+    contents: 
+        - index.qmd
+        - session1.qmd
+        - session2.qmd
+        - session3.qmd
+        - resources.qmd
+  page-navigation: true
+  
 format:
   html:
     theme: cosmo
     css: styles.css
+    code-copy: true
+    code-line-numbers: true
+    code-overflow: wrap
     toc: true
 
+callout-appearance: simple
+
+date: today
+date-format: iso
 
 

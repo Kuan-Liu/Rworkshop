@@ -98,6 +98,63 @@ The tidyverse consists of a few key packages:
 
 -  frequently used in tidyverse!
 
+### Selecting Columns and Rows
+
+-  Example: using `%>%` to subset data
+    -  `select()` in `dplyr` subset columns by names
+    -  `filter()` subset rows using column values
+
+```{r eval=TRUE}
+# selecting columns;
+co2 %>%
+  select(year, month, average) %>%
+  head()
+
+# drop some variables;
+co2 %>%
+  select(-month) %>%
+  head()
+```
+
+Sometimes, we have a lot of variables to select, and if they have a common naming scheme, this can be very easy.
+
+```{r eval=FALSE}
+co2 %>%
+  select(contains("bound")) %>%
+  head()
+```
+
+-  Over helpful functions to be used within `select()`
+    -  starts_with: starts with a prefix
+    -  ends_with: ends with a suffix
+    -  contains: contains a literal string
+    -  matches: matches a regular expression
+    -  num_range: a numerical range like wk1, wk2, wk3.
+        -  `select(num_range("wk", 1:3))`
+    -  everything: all variables.
+
+```{r}
+# selecting rows by columns values;
+co2 %>%
+  select(year, month, average) %>%
+  filter(year == 2022)
+  head()
+```
+
+
+
+-  Example: using `%>%` and `mutate()` to create new variable
+
+```{r}
+co2 %>%
+  mutate(lowerbound_2sd = average1 - 2*sd,
+         upperbound_2sd = average1 + 2*sd)
+
+```
+
+
+
+
 ### merge and join
 
 

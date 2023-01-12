@@ -22,7 +22,7 @@ title: "2. Working with Data"
 -  package `readxl` reads excel files (both .xls and .xlsx).
 
 ```{r message=FALSE, warning=FALSE}
-library(readr)
+library(tidyverse)
 co2 <- read_csv(file = "co2_mm_gl_clean.csv")
 ```
 
@@ -104,7 +104,7 @@ The tidyverse consists of a few key packages:
     -  `select()` in `dplyr` subset columns by names
     -  `filter()` subset rows using column values
 
-```{r eval=TRUE}
+```{r eval=FALSE}
 # selecting columns;
 co2 %>%
   select(year, month, average) %>%
@@ -136,10 +136,10 @@ co2 %>%
 
 -  Example: using `%>%` and `mutate()` to create new variable
 
-```{r}
+```{r eval=FALSE}
 co2 %>%
-  mutate(lowerbound_2sd = average1 - 2*sd,
-         upperbound_2sd = average1 + 2*sd)
+  mutate(lowerbound_2sd = average - 2*sd,
+         upperbound_2sd = average + 2*sd)
 
 ```
 

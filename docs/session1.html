@@ -1164,12 +1164,9 @@ Tips
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'DT' was built under R version 4.2.2</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb152"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(mtcars,</span>
-<span id="cb152-2"><a href="#cb152-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">options =</span> <span class="fu">list</span>(<span class="at">dom =</span> <span class="st">'t'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb150-2"><a href="#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(mtcars,</span>
+<span id="cb150-3"><a href="#cb150-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">options =</span> <span class="fu">list</span>(<span class="at">dom =</span> <span class="st">'t'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f5794e54a4873249b169" style="width:100%;height:auto;"></div>
@@ -1177,27 +1174,27 @@ Tips
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb153"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating a list a variables that are predictive of the fuel consumption;</span></span>
-<span id="cb153-2"><a href="#cb153-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-3"><a href="#cb153-3" aria-hidden="true" tabindex="-1"></a>predictors <span class="ot">&lt;-</span> <span class="fu">colnames</span>(mtcars)[<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb153-4"><a href="#cb153-4" aria-hidden="true" tabindex="-1"></a>predictors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb151"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating a list a variables that are predictive of the fuel consumption;</span></span>
+<span id="cb151-2"><a href="#cb151-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-3"><a href="#cb151-3" aria-hidden="true" tabindex="-1"></a>predictors <span class="ot">&lt;-</span> <span class="fu">colnames</span>(mtcars)[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb151-4"><a href="#cb151-4" aria-hidden="true" tabindex="-1"></a>predictors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "cyl"  "disp" "hp"   "drat" "wt"   "qsec" "vs"   "am"   "gear" "carb"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb155"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co">#run unadjusted regression analysis for each predictor;</span></span>
-<span id="cb155-2"><a href="#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="co"># m1 &lt;- lm(mpg~cyl,data = mtcars)</span></span>
-<span id="cb155-3"><a href="#cb155-3" aria-hidden="true" tabindex="-1"></a><span class="co"># m2 &lt;- lm(mpg~disp,data = mtcars)</span></span>
-<span id="cb155-4"><a href="#cb155-4" aria-hidden="true" tabindex="-1"></a><span class="co"># m3 &lt;- lm(mpg~hp,data = mtcars)</span></span>
-<span id="cb155-5"><a href="#cb155-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-6"><a href="#cb155-6" aria-hidden="true" tabindex="-1"></a><span class="co"># make a list of model formulars: list(mpg ~ cyl, mpg ~ disp, ...);</span></span>
-<span id="cb155-7"><a href="#cb155-7" aria-hidden="true" tabindex="-1"></a>list_model_formulas <span class="ot">&lt;-</span> <span class="fu">sapply</span>(predictors,<span class="cf">function</span>(x)<span class="fu">as.formula</span>(<span class="fu">paste</span>(<span class="st">'mpg~'</span>,x)))</span>
-<span id="cb155-8"><a href="#cb155-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-9"><a href="#cb155-9" aria-hidden="true" tabindex="-1"></a><span class="co"># making a list of unadjusted models;</span></span>
-<span id="cb155-10"><a href="#cb155-10" aria-hidden="true" tabindex="-1"></a>list_models <span class="ot">&lt;-</span> <span class="fu">lapply</span>(list_model_formulas,<span class="cf">function</span>(x){<span class="fu">lm</span>(x,<span class="at">data=</span>mtcars)})</span>
-<span id="cb155-11"><a href="#cb155-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-12"><a href="#cb155-12" aria-hidden="true" tabindex="-1"></a><span class="co">#extract model results;</span></span>
-<span id="cb155-13"><a href="#cb155-13" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lapply</span>(list_models, <span class="cf">function</span>(x){<span class="fu">return</span>(<span class="fu">summary</span>(x)<span class="sc">$</span>coef)})</span>
-<span id="cb155-14"><a href="#cb155-14" aria-hidden="true" tabindex="-1"></a>results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb153"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co">#run unadjusted regression analysis for each predictor;</span></span>
+<span id="cb153-2"><a href="#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="co"># m1 &lt;- lm(mpg~cyl,data = mtcars)</span></span>
+<span id="cb153-3"><a href="#cb153-3" aria-hidden="true" tabindex="-1"></a><span class="co"># m2 &lt;- lm(mpg~disp,data = mtcars)</span></span>
+<span id="cb153-4"><a href="#cb153-4" aria-hidden="true" tabindex="-1"></a><span class="co"># m3 &lt;- lm(mpg~hp,data = mtcars)</span></span>
+<span id="cb153-5"><a href="#cb153-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-6"><a href="#cb153-6" aria-hidden="true" tabindex="-1"></a><span class="co"># make a list of model formulars: list(mpg ~ cyl, mpg ~ disp, ...);</span></span>
+<span id="cb153-7"><a href="#cb153-7" aria-hidden="true" tabindex="-1"></a>list_model_formulas <span class="ot">&lt;-</span> <span class="fu">sapply</span>(predictors,<span class="cf">function</span>(x)<span class="fu">as.formula</span>(<span class="fu">paste</span>(<span class="st">'mpg~'</span>,x)))</span>
+<span id="cb153-8"><a href="#cb153-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-9"><a href="#cb153-9" aria-hidden="true" tabindex="-1"></a><span class="co"># making a list of unadjusted models;</span></span>
+<span id="cb153-10"><a href="#cb153-10" aria-hidden="true" tabindex="-1"></a>list_models <span class="ot">&lt;-</span> <span class="fu">lapply</span>(list_model_formulas,<span class="cf">function</span>(x){<span class="fu">lm</span>(x,<span class="at">data=</span>mtcars)})</span>
+<span id="cb153-11"><a href="#cb153-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-12"><a href="#cb153-12" aria-hidden="true" tabindex="-1"></a><span class="co">#extract model results;</span></span>
+<span id="cb153-13"><a href="#cb153-13" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lapply</span>(list_models, <span class="cf">function</span>(x){<span class="fu">return</span>(<span class="fu">summary</span>(x)<span class="sc">$</span>coef)})</span>
+<span id="cb153-14"><a href="#cb153-14" aria-hidden="true" tabindex="-1"></a>results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$cyl
             Estimate Std. Error   t value     Pr(&gt;|t|)

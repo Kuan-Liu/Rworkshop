@@ -556,7 +556,7 @@ sapply(mylist, FUN = sum)
         -  carb	Number of carburetors
 
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 library(DT)
 datatable(mtcars,
           options = list(dom = 't'))

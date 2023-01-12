@@ -133,15 +133,6 @@ co2 %>%
         -  `select(num_range("wk", 1:3))`
     -  everything: all variables.
 
-```{r}
-# selecting rows by columns values;
-co2 %>%
-  select(year, month, average) %>%
-  filter(year == 2022)
-  head()
-```
-
-
 
 -  Example: using `%>%` and `mutate()` to create new variable
 

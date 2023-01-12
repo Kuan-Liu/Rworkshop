@@ -1,4 +1,4 @@
 ---
-title: "2. Data visualization with ggplot"
+title: "2. Working with Data"
 ---
 

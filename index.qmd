@@ -22,7 +22,7 @@ At the end of the class, students will be able to:
 -   efficiently handle datasets
 -   perform common data visualizations used in Bioscience
 -   conduct descriptive analysis in R
--   conduct regression analysis in R
+-   conduct regression analysis in R (if time permits)
 
 # Schedule
 
@@ -31,7 +31,7 @@ At the end of the class, students will be able to:
 |  9:00 - 9:10  |              [Introduction](index.qmd)               |
 |  9:10 - 9:45  |    [Session 1: Get Started with R](session1.qmd)     |
 | 9:45 - 10:00  |               Questions + Coffee break               |
-| 10:00 - 10:45 |  [Session 2: Data Visualization in R](session2.qmd)  |
+| 10:00 - 10:45 |  [Session 2: Working with Data](session2.qmd)  |
 | 10:45 - 11:00 |               Questions + Coffee break               |
 | 11:00 - 11:45 | [Session 3: Statistical Analysis in R](session3.qmd) |
 | 11:45 - 12:00 |              Conclusions and Questions               |

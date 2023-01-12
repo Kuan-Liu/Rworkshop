@@ -43,6 +43,12 @@ co2 <- read_csv(file = "co2_mm_gl_clean.csv")
 | str(co2)        | Structure of the data frame            |
 
 
+```{r warning=FALSE, message=FALSE}
+library(DT)
+datatable(co2)
+```
+
+
 ```{r}
 str(co2)
 summary(co2) 

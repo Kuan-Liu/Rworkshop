@@ -13,7 +13,7 @@ format:
 -   The workshop is intended for any Bioscience researchers with limited prior experience in R who is interested in learning how to use R to do data wrangling, data visualization, common statistical analyses.
 -   Workshop materials in the github repository [Rworkshop](https://github.com/Kuan-Liu/Rworkshop)
 
-# Learning Objectives
+# Learning objectives
 
 At the end of the class, students will be able to:
 
@@ -53,14 +53,29 @@ Participants are required to follow the next steps before the day of the worksho
 
 3.  Clone or download the workshop repository: <https://github.com/Kuan-Liu/Rworkshop>
 
+```{r}
+
+```
+
+# Reference and resource
+
+-   [R for Data Science by Hadley Wickham & Garrett Grolemund](http://r4ds.hadley.nz/)
+
+-   [ggplot2: elegant graphics for data analysis by Hadley Wickham](https://ggplot2-book.org/index.html)
+
+
+R for Data Science             |  ggplot2: elegant graphics for data analysis
+:-------------------------:|:-------------------------:
+![](https://d33wubrfki0l68.cloudfront.net/b88ef926a004b0fce72b2526b0b5c4413666a4cb/24a30/cover.png){width=60%}  |  ![](https://ggplot2-book.org/cover.jpg){width=60%}
+
+
 # About me
 
--  I am an Assistant Professor in Biostatistics and Health Services Research at the University of Toronto
--  My primary research focuses on developing methodology for statistical inference with complex longitudinal data in comparative effectiveness research
-    -  causal inference
-    -  Bayesian statistics
-    -  longitudinal data analysis
-    -  joint modelling
-    -  bias analysis
--  My ties to forestry and ecology `r emoji::emoji("evergreen_tree")`
-
+-   I am an Assistant Professor in Biostatistics and Health Services Research at the University of Toronto
+-   My primary research focuses on developing methodology for statistical inference with complex longitudinal data in comparative effectiveness research
+    -   causal inference
+    -   Bayesian statistics
+    -   longitudinal data analysis
+    -   joint modelling
+    -   bias analysis
+-   My ties to forestry and ecology `r emoji::emoji("evergreen_tree")`

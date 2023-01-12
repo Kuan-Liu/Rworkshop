@@ -8,7 +8,6 @@ project:
       - session1.qmd
       - session2.qmd
       - session3.qmd
-      - resources.qmd
 
 website:
   title: "Introduction to R and R modelling for Bioscience"
@@ -32,7 +31,6 @@ website:
         - session1.qmd
         - session2.qmd
         - session3.qmd
-        - resources.qmd
   page-navigation: true
   
 format:
@@ -40,7 +38,6 @@ format:
     theme: cosmo
     css: styles.css
     code-copy: true
-    code-line-numbers: true
     code-overflow: wrap
     toc: true
 

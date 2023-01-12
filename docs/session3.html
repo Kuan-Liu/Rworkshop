@@ -6,10 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Kuan Liu">
 <meta name="dcterms.date" content="2023-01-11">
 
-<title>Introduction to R and R modelling for Bioscience - R Workshop for Bioscience</title>
+<title>Introduction to R and R modelling for Bioscience - 3. Statistical analysis in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./session1.html" rel="next">
+<link href="./session2.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -94,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">R Workshop for Bioscience</h1>
+      <h1 class="quarto-secondary-nav-title">3. Statistical analysis in R</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -114,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">R Workshop for Bioscience</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">R Workshop for Bioscience</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -129,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./session3.html" class="sidebar-item-text sidebar-link">3. Statistical analysis in R</a>
+  <a href="./session3.html" class="sidebar-item-text sidebar-link active">3. Statistical analysis in R</a>
   </div>
 </li>
     </ul>
@@ -137,38 +136,20 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a></li>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning objectives</a></li>
-  <li><a href="#schedule" id="toc-schedule" class="nav-link" data-scroll-target="#schedule">Schedule</a></li>
-  <li><a href="#in-preparation-for-the-workshop" id="toc-in-preparation-for-the-workshop" class="nav-link" data-scroll-target="#in-preparation-for-the-workshop">In preparation for the workshop</a></li>
-  <li><a href="#reference-and-resource" id="toc-reference-and-resource" class="nav-link" data-scroll-target="#reference-and-resource">Reference and resource</a></li>
-  <li><a href="#about-me" id="toc-about-me" class="nav-link" data-scroll-target="#about-me">About me</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">R Workshop for Bioscience</h1>
-<p class="subtitle lead">CAF Jan 13, 2023</p>
+<h1 class="title d-none d-lg-block">3. Statistical analysis in R</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Kuan Liu </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
@@ -183,133 +164,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="welcome" class="level1">
-<h1>Welcome</h1>
-<ul>
-<li>Welcome to the R workshop for Bioscience!</li>
-<li>The workshop is intended for any Bioscience researchers with limited prior experience in R who is interested in learning how to use R to do data wrangling, data visualization, common statistical analyses.</li>
-<li>Workshop materials in the github repository <a href="https://github.com/Kuan-Liu/Rworkshop">Rworkshop</a></li>
-</ul>
-</section>
-<section id="learning-objectives" class="level1">
-<h1>Learning objectives</h1>
-<p>At the end of the class, students will be able to:</p>
-<ul>
-<li>navigate R and R studio interface</li>
-<li>set up project and coding environment for data analysis</li>
-<li>efficiently handle datasets</li>
-<li>perform common data visualizations used in Bioscience</li>
-<li>conduct descriptive analysis in R</li>
-<li>conduct regression analysis in R</li>
-</ul>
-</section>
-<section id="schedule" class="level1">
-<h1>Schedule</h1>
-<table class="table">
-<thead>
-<tr class="header">
-<th style="text-align: center;">Time</th>
-<th style="text-align: center;">Topic</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">9:00 - 9:10</td>
-<td style="text-align: center;"><a href="./index.html">Introduction</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">9:10 - 9:45</td>
-<td style="text-align: center;"><a href="./session1.html">Session 1: Get Started with R</a></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">9:45 - 10:00</td>
-<td style="text-align: center;">Questions + Coffee break</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">10:00 - 10:45</td>
-<td style="text-align: center;"><a href="./session2.html">Session 2: Data Visualization in R</a></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">10:45 - 11:00</td>
-<td style="text-align: center;">Questions + Coffee break</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">11:00 - 11:45</td>
-<td style="text-align: center;"><a href="./session3.html">Session 3: Statistical Analysis in R</a></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">11:45 - 12:00</td>
-<td style="text-align: center;">Conclusions and Questions</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="in-preparation-for-the-workshop" class="level1">
-<h1>In preparation for the workshop</h1>
-<p>Participants are required to follow the next steps before the day of the workshop:</p>
-<ol type="1">
-<li><p>Install R and R Studio</p>
-<ul>
-<li>Windows operating system
-<ul>
-<li>install R, <a href="https://cran.r-project.org/bin/windows/base/" class="uri">https://cran.r-project.org/bin/windows/base/</a></li>
-<li>install RStudio, <a href="https://posit.co/download/rstudio-desktop/#download" class="uri">https://posit.co/download/rstudio-desktop/#download</a></li>
-</ul></li>
-<li>macOS operating system
-<ul>
-<li>install R, <a href="https://cran.r-project.org/bin/macosx/" class="uri">https://cran.r-project.org/bin/macosx/</a></li>
-<li>install RStudio, <a href="https://posit.co/download/rstudio-desktop/#download" class="uri">https://posit.co/download/rstudio-desktop/#download</a></li>
-</ul></li>
-</ul></li>
-<li><p>Verify access to the course page, <a href="https://kuan-liu.github.io/Rworkshop/" class="uri">https://kuan-liu.github.io/Rworkshop/</a></p></li>
-<li><p>Clone or download the workshop repository: <a href="https://github.com/Kuan-Liu/Rworkshop" class="uri">https://github.com/Kuan-Liu/Rworkshop</a></p></li>
-</ol>
-<div class="cell">
-
-</div>
-</section>
-<section id="reference-and-resource" class="level1">
-<h1>Reference and resource</h1>
-<ul>
-<li><p><a href="http://r4ds.hadley.nz/">R for Data Science by Hadley Wickham &amp; Garrett Grolemund</a></p></li>
-<li><p><a href="https://ggplot2-book.org/index.html">ggplot2: elegant graphics for data analysis by Hadley Wickham</a></p></li>
-</ul>
-<table class="table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">R for Data Science</th>
-<th style="text-align: center;">ggplot2: elegant graphics for data analysis</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><img src="https://d33wubrfki0l68.cloudfront.net/b88ef926a004b0fce72b2526b0b5c4413666a4cb/24a30/cover.png" class="img-fluid" style="width:60.0%"></td>
-<td style="text-align: center;"><img src="https://ggplot2-book.org/cover.jpg" class="img-fluid" style="width:60.0%"></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="about-me" class="level1">
-<h1>About me</h1>
-<ul>
-<li>I am an Assistant Professor in Biostatistics and Health Services Research at the University of Toronto</li>
-<li>My primary research focuses on developing methodology for statistical inference with complex longitudinal data in comparative effectiveness research
-<ul>
-<li>causal inference</li>
-<li>Bayesian statistics</li>
-<li>longitudinal data analysis</li>
-<li>joint modelling</li>
-<li>bias analysis</li>
-</ul></li>
-<li>My ties to forestry and ecology 🌲</li>
-</ul>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -447,11 +303,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./session2.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">2. Data visualization with ggplot</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./session1.html" class="pagination-link">
-        <span class="nav-page-text">1. Getting started with R</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

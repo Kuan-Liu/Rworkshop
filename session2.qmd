@@ -2,3 +2,106 @@
 title: "2. Working with Data"
 ---
 
+::: callout-tip
+## Learning Objectives
+-  Loading, exploring and saving data
+-  Learn to manipulate data frames with tidyverse
+-  Overview of ggplot2 for data visualization
+:::
+
+-  For this session, we will be working with the co2_mm_gl_clean.csv dataset
+
+-  This data contains monthly globally averaged CO2 records between 1979 and 2022.
+
+-  Lan, X., Tans, P. and K.W. Thoning: Trends in globally-averaged CO2 determined from NOAA Global Monitoring Laboratory measurements. Version 2023-01 NOAA/GML (<https://gml.noaa.gov/ccgg/trends/>)
+
+## 2.1 Data import and export
+
+-  package `readr`	reads txt, csv, Rdata (or rda). 
+-  package `haven` reads SPSS, Stata, and SAS files.
+-  package `readxl` reads excel files (both .xls and .xlsx).
+
+```{r message=FALSE, warning=FALSE}
+library(readr)
+co2 <- read_csv(file = "co2_mm_gl_clean.csv")
+```
+
+###  Looking at the data
+
+| co2             | Look at the whole data frame           |
+|-----------------|----------------------------------------|
+| head(co2)       | Look at the first few rows             |
+| tail(co2)       | Look at the last few rows              |
+| colnames(co2)   | Names of the columns in the data frame |
+| attributes(co2) | Attributes of the data frame           |
+| dim(co2)        | Dimensions of the data frame           |
+| ncol(co2)       | Number of columns                      |
+| nrow(co2)       | Number of rows                         |
+| summary(co2)    | Summary statistics                     |
+| str(co2)        | Structure of the data frame            |
+
+
+```{r}
+str(co2)
+summary(co2) 
+```
+
+### Renaming variables
+```{r}
+colnames(co2)[5]
+colnames(co2)[5] <- "sd"
+colnames(co2)
+```
+
+### Creating new variables
+```{r}
+co2$lowerbound_1sd <- co2$average - 1*co2$sd
+co2$upperbound_1sd <- co2$average + 1*co2$sd
+head(co2)
+```
+### Subsetting data
+
+```{r}
+# extracting data between 2020 and 2022;
+co2_2020_2022 <- subset(co2, year >= 2020 & year <=2022)
+
+# subletting directly from dataframe using index;
+# try at home;
+# co2_2020_2022 <- CO2[CO2year >= 2020 & year <=2022, ]  # Select observations with year between 2020 and 2022;
+```
+
+
+-  we can export data from r using write function
+
+```{r eval=FALSE}
+write.csv(co2, file = 'co2_mm_gl_clean2.csv')
+```
+
+## 2.2 Data manipulation with tidyverse (a crush introduction)
+
+::: {.callout-note}
+**What is the Tidyverse?**
+
+The tidyverse consists of a few key packages:
+  -  **dplyr: data manipulation**
+  -  **ggplot2: data visualization**
+  -  **tibble: tibbles, a modern re-imagining of data frames**
+  -  tidyr: data tidying
+  -  readr: data import
+  -  purrr: functional programming, e.g. alternate approaches to apply
+
+:::
+
+-  Pipe operator `%>%`
+
+-  Pipes are operators that send what comes before the pipe to what comes after.
+
+-  frequently used in tidyverse!
+
+### merge and join
+
+
+### ggplot2
+
+
+

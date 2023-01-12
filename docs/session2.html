@@ -21,6 +21,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -137,7 +200,24 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data-import-and-export" id="toc-data-import-and-export" class="nav-link active" data-scroll-target="#data-import-and-export">2.1 Data import and export</a>
+  <ul class="collapse">
+  <li><a href="#looking-at-the-data" id="toc-looking-at-the-data" class="nav-link" data-scroll-target="#looking-at-the-data">Looking at the data</a></li>
+  <li><a href="#renaming-variables" id="toc-renaming-variables" class="nav-link" data-scroll-target="#renaming-variables">Renaming variables</a></li>
+  <li><a href="#creating-new-variables" id="toc-creating-new-variables" class="nav-link" data-scroll-target="#creating-new-variables">Creating new variables</a></li>
+  <li><a href="#subsetting-data" id="toc-subsetting-data" class="nav-link" data-scroll-target="#subsetting-data">Subsetting data</a></li>
+  </ul></li>
+  <li><a href="#data-manipulation-with-tidyverse-a-crush-introduction" id="toc-data-manipulation-with-tidyverse-a-crush-introduction" class="nav-link" data-scroll-target="#data-manipulation-with-tidyverse-a-crush-introduction">2.2 Data manipulation with tidyverse (a crush introduction)</a>
+  <ul class="collapse">
+  <li><a href="#merge-and-join" id="toc-merge-and-join" class="nav-link" data-scroll-target="#merge-and-join">merge and join</a></li>
+  <li><a href="#ggplot2" id="toc-ggplot2" class="nav-link" data-scroll-target="#ggplot2">ggplot2</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -165,8 +245,203 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<div class="callout-tip callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Learning Objectives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Loading, exploring and saving data</li>
+<li>Learn to manipulate data frames with tidyverse</li>
+<li>Overview of ggplot2 for data visualization</li>
+</ul>
+</div>
+</div>
+<ul>
+<li><p>For this session, we will be working with the co2_mm_gl_clean.csv dataset</p></li>
+<li><p>This data contains monthly globally averaged CO2 records between 1979 and 2022.</p></li>
+<li><p>Lan, X., Tans, P. and K.W. Thoning: Trends in globally-averaged CO2 determined from NOAA Global Monitoring Laboratory measurements. Version 2023-01 NOAA/GML (<a href="https://gml.noaa.gov/ccgg/trends/" class="uri">https://gml.noaa.gov/ccgg/trends/</a>)</p></li>
+</ul>
+<section id="data-import-and-export" class="level2">
+<h2 class="anchored" data-anchor-id="data-import-and-export">2.1 Data import and export</h2>
+<ul>
+<li>package <code>readr</code> reads txt, csv, Rdata (or rda).</li>
+<li>package <code>haven</code> reads SPSS, Stata, and SAS files.</li>
+<li>package <code>readxl</code> reads excel files (both .xls and .xlsx).</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>co2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"co2_mm_gl_clean.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="looking-at-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="looking-at-the-data">Looking at the data</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th>co2</th>
+<th>Look at the whole data frame</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>head(co2)</td>
+<td>Look at the first few rows</td>
+</tr>
+<tr class="even">
+<td>tail(co2)</td>
+<td>Look at the last few rows</td>
+</tr>
+<tr class="odd">
+<td>colnames(co2)</td>
+<td>Names of the columns in the data frame</td>
+</tr>
+<tr class="even">
+<td>attributes(co2)</td>
+<td>Attributes of the data frame</td>
+</tr>
+<tr class="odd">
+<td>dim(co2)</td>
+<td>Dimensions of the data frame</td>
+</tr>
+<tr class="even">
+<td>ncol(co2)</td>
+<td>Number of columns</td>
+</tr>
+<tr class="odd">
+<td>nrow(co2)</td>
+<td>Number of rows</td>
+</tr>
+<tr class="even">
+<td>summary(co2)</td>
+<td>Summary statistics</td>
+</tr>
+<tr class="odd">
+<td>str(co2)</td>
+<td>Structure of the data frame</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(co2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spec_tbl_df [526 x 5] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ year   : num [1:526] 1979 1979 1979 1979 1979 ...
+ $ month  : num [1:526] 1 2 3 4 5 6 7 8 9 10 ...
+ $ decimal: num [1:526] 1979 1979 1979 1979 1979 ...
+ $ average: num [1:526] 337 337 338 338 338 ...
+ $ stddev : num [1:526] 0.1 0.09 0.1 0.11 0.04 0.17 0.27 0.29 0.2 0.22 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   year = col_double(),
+  ..   month = col_double(),
+  ..   decimal = col_double(),
+  ..   average = col_double(),
+  ..   stddev = col_double()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(co2) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      year          month           decimal        average     
+ Min.   :1979   Min.   : 1.000   Min.   :1979   Min.   :334.4  
+ 1st Qu.:1989   1st Qu.: 3.250   1st Qu.:1990   1st Qu.:353.2  
+ Median :2000   Median : 6.000   Median :2001   Median :369.7  
+ Mean   :2000   Mean   : 6.481   Mean   :2001   Mean   :372.6  
+ 3rd Qu.:2011   3rd Qu.: 9.000   3rd Qu.:2012   3rd Qu.:391.3  
+ Max.   :2022   Max.   :12.000   Max.   :2023   Max.   :418.5  
+     stddev       
+ Min.   :0.03000  
+ 1st Qu.:0.08000  
+ Median :0.10000  
+ Mean   :0.09894  
+ 3rd Qu.:0.11000  
+ Max.   :0.29000  </code></pre>
+</div>
+</div>
+</section>
+<section id="renaming-variables" class="level3">
+<h3 class="anchored" data-anchor-id="renaming-variables">Renaming variables</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(co2)[<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "stddev"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(co2)[<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="st">"sd"</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(co2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "year"    "month"   "decimal" "average" "sd"     </code></pre>
+</div>
+</div>
+</section>
+<section id="creating-new-variables" class="level3">
+<h3 class="anchored" data-anchor-id="creating-new-variables">Creating new variables</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>co2<span class="sc">$</span>lowerbound_1sd <span class="ot">&lt;-</span> co2<span class="sc">$</span>average <span class="sc">-</span> <span class="dv">1</span><span class="sc">*</span>co2<span class="sc">$</span>sd</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>co2<span class="sc">$</span>upperbound_1sd <span class="ot">&lt;-</span> co2<span class="sc">$</span>average <span class="sc">+</span> <span class="dv">1</span><span class="sc">*</span>co2<span class="sc">$</span>sd</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(co2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 x 7
+   year month decimal average    sd lowerbound_1sd upperbound_1sd
+  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+1  1979     1   1979.    337.  0.1            336.           337.
+2  1979     2   1979.    337.  0.09           337.           337.
+3  1979     3   1979.    338.  0.1            338.           338.
+4  1979     4   1979.    338.  0.11           338.           338.
+5  1979     5   1979.    338.  0.04           338.           338.
+6  1979     6   1979.    337.  0.17           337.           338.</code></pre>
+</div>
+</div>
+</section>
+<section id="subsetting-data" class="level3">
+<h3 class="anchored" data-anchor-id="subsetting-data">Subsetting data</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extracting data between 2020 and 2022;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>co2_2020_2022 <span class="ot">&lt;-</span> <span class="fu">subset</span>(co2, year <span class="sc">&gt;=</span> <span class="dv">2020</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span><span class="dv">2022</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># subletting directly from dataframe using index;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># try at home;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># co2_2020_2022 &lt;- CO2[CO2year &gt;= 2020 &amp; year &lt;=2022, ]  # Select observations with year between 2020 and 2022;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>we can export data from r using write function</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(co2, <span class="at">file =</span> <span class="st">'co2_mm_gl_clean2.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="data-manipulation-with-tidyverse-a-crush-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="data-manipulation-with-tidyverse-a-crush-introduction">2.2 Data manipulation with tidyverse (a crush introduction)</h2>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>What is the Tidyverse?</strong></p>
+<p>The tidyverse consists of a few key packages: - <strong>dplyr: data manipulation</strong> - <strong>ggplot2: data visualization</strong> - <strong>tibble: tibbles, a modern re-imagining of data frames</strong> - tidyr: data tidying - readr: data import - purrr: functional programming, e.g.&nbsp;alternate approaches to apply</p>
+</div>
+</div>
+</div>
+<ul>
+<li><p>Pipe operator <code>%&gt;%</code></p></li>
+<li><p>Pipes are operators that send what comes before the pipe to what comes after.</p></li>
+<li><p>frequently used in tidyverse!</p></li>
+</ul>
+<section id="merge-and-join" class="level3">
+<h3 class="anchored" data-anchor-id="merge-and-join">merge and join</h3>
+</section>
+<section id="ggplot2" class="level3">
+<h3 class="anchored" data-anchor-id="ggplot2">ggplot2</h3>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

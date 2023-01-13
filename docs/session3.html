@@ -21,6 +21,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -61,6 +124,17 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+<script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.26/datatables.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -136,7 +210,17 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#descriptive-analysis" id="toc-descriptive-analysis" class="nav-link active" data-scroll-target="#descriptive-analysis">3.1 Descriptive Analysis</a></li>
+  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression">3.2 Linear regression</a>
+  <ul class="collapse">
+  <li><a href="#normal-models-and-linear-regression" id="toc-normal-models-and-linear-regression" class="nav-link" data-scroll-target="#normal-models-and-linear-regression">Normal Models and Linear Regression</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -180,8 +264,630 @@ Learning Objectives
 </ul>
 </div>
 </div>
+<ul>
+<li><p>For this session, we will be working with the birdsdiet.csv dataset</p></li>
+<li><p>This data contains abundance and mass of bird species, data is obtained online from <a href="https://r.qcbs.ca/workshops/" class="uri">https://r.qcbs.ca/workshops/</a></p></li>
+<li><p>Dataset is used for demonstration purpose only</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">fig.align=</span><span class="st">"center"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>, <span class="at">pillar.print_max =</span> <span class="cn">Inf</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>bird <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"birdsdiet.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>display data</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(bird)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-af0a071b9d65f790adeb" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-af0a071b9d65f790adeb">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54"],["Hawks&amp;Eagles&amp;Kites","Long-tailed tits","Larks","Kingfishers","Auks&amp; Puffins","Ducks&amp; Geese","Anhingas","Swifts","Limpkins","Herons&amp; Egrets","Waxwings","Nightjars","Cardinals&amp; Buntings&amp; Grosbreaks","Creepers","Plovers","Storks","Pigeons &amp; Doves","Cuckoos","Sparrows &amp; Buntings","Falcons","Frigate birds","Finches","Loons","Swallows","Blackbirds &amp; Orioles","Shrikes","Mockingbirds &amp; Thrashers","Wagtails &amp; Pipits","Chickadees","Wood warblers","OW Sparrows","Pelecans","Olive Warbler","Cromorants","Grouse&amp; Pheasant","Woodpeckers","Silky-flycatchers","Rails","Kinglets","Sandpipers","Nuthatches","Owls","Starlings","Gannets&amp;Boobies","Gnatcatchers","Tanagers","Ibises","Babblers","Wrens","Trogons","Thrushes","Flycatchers","Owls","Vireos"],[2.985543693,37.8,241.4,4.4,4.532504791,23.69363524,24.6,43.9739995,1.6,46.4597129,11.66533326,9.09756124,49.84475012,9.6,5.089107341,20,14.87611003,4.437120042,35.42740517,2.058283778,0.2,41.42846364,4.757966318,157.8806094,100.7571886,2.315167381,17.5018567,15.87654996,28.72889712,31.58989848,122.5332608,255.6478828,2.6,33.9263876,6.341572253,12.65242034,38.4,6.828902645,65.03845017,7.800654629,30.43393702,0.773934576,413.6,61.4,100.9778166,31.10834113,71.95386514,42.4,53.98624257,0.2,25.11485055,20.38193317,1.2,25.03338835],[0.674021641,4.04043,23.1054,0.594906,2.963271765,2.741672852,1.84231,3.952014068,0.566667,2.970944624,2.795903253,1.572129619,6.615462,1.02512,1.681270643,2.9,3.0448496,1.314525714,6.794523609,0.569004864,0.2,4.926521391,1.193624729,10.45898683,10.32062124,0.70321405,3.182322363,3.417479183,6.360897296,3.69869263,8.580340902,20.68249096,1.35,7.659101449,1.336282109,2.363520863,5.34737,1.297514552,5.799750209,1.862600981,2.97971133,0.330332835,47.5976,31.8,12.08757638,4.121437584,9.032337908,7.975,5.949881887,0.2,4.672446701,3.843142516,0.385714,3.572727361],[716.0189356,5.3,35.77708764,119.3717162,315.4955185,1144.290035,1250,27.39269818,1100,462.3001048,42.33202098,57.84491153,24.04748225,8.4,89.02073172,2400,140.5755382,95.21462173,21.67675181,473.6826732,1500,21.80729294,3190.160779,19.21668948,53.71384673,55.85696018,60.52103281,19.80405458,12.17863603,10.67837379,24.81934729,5296.225071,11,1940.778029,841.2222371,66.6807482,24,153.7589531,6.244997998,89.80402619,12.18574676,221.8373953,119.1209108,1512.987943,6.365522799,29.3177632,835.7064623,14,13.39754676,70,41.59792338,20.34911751,460,13.60808768],["Vertebrate","Insect","PlantInsect","Vertebrate","InsectVert","PlantInsect","Vertebrate","Insect","Insect","Vertebrate","PlantInsect","Insect","PlantInsect","Insect","Insect","Insect","Plant","Insect","PlantInsect","Vertebrate","Vertebrate","Plant","Vertebrate","Insect","PlantInsect","InsectVert","PlantInsect","Insect","PlantInsect","Insect","PlantInsect","Vertebrate","Insect","Vertebrate","PlantInsect","PlantInsect","PlantInsect","Insect","Insect","Insect","PlantInsect","Vertebrate","PlantInsect","Vertebrate","Insect","PlantInsect","Insect","PlantInsect","Insect","Insect","PlantInsect","Insect","Vertebrate","PlantInsect"],[0,1,1,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,1,0,0,1,0,0,1,1,1,1,1,1,1,0,1,0,0,0,1,0,1,0,1,0,1,0,1,1,0,0,1,0,1,1,0,1],[0,0,0,0,1,1,1,0,1,1,0,0,0,0,1,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Family<\/th>\n      <th>MaxAbund<\/th>\n      <th>AvgAbund<\/th>\n      <th>Mass<\/th>\n      <th>Diet<\/th>\n      <th>Passerine<\/th>\n      <th>Aquatic<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,6,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(bird)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [54 × 7] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ Family   : chr [1:54] "Hawks&amp;Eagles&amp;Kites" "Long-tailed tits" "Larks" "Kingfishers" ...
+ $ MaxAbund : num [1:54] 2.99 37.8 241.4 4.4 4.53 ...
+ $ AvgAbund : num [1:54] 0.674 4.04 23.105 0.595 2.963 ...
+ $ Mass     : num [1:54] 716 5.3 35.8 119.4 315.5 ...
+ $ Diet     : chr [1:54] "Vertebrate" "Insect" "PlantInsect" "Vertebrate" ...
+ $ Passerine: num [1:54] 0 1 1 0 0 0 0 0 0 0 ...
+ $ Aquatic  : num [1:54] 0 0 0 0 1 1 1 0 1 1 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   Family = col_character(),
+  ..   MaxAbund = col_double(),
+  ..   AvgAbund = col_double(),
+  ..   Mass = col_double(),
+  ..   Diet = col_character(),
+  ..   Passerine = col_double(),
+  ..   Aquatic = col_double()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+</div>
+<section id="descriptive-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-analysis">3.1 Descriptive Analysis</h2>
+<ul>
+<li>Descriptive statistics
+<ul>
+<li>measures of central tendency, variability, and distribution shape for continuous variables</li>
+<li>frequency counts for categorical variables</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># basic summary using summary function;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bird)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Family             MaxAbund          AvgAbund           Mass        
+ Length:54          Min.   :  0.200   Min.   : 0.200   Min.   :   5.30  
+ Class :character   1st Qu.:  5.402   1st Qu.: 1.340   1st Qu.:  20.68  
+ Mode  :character   Median : 24.147   Median : 3.114   Median :  59.18  
+                    Mean   : 44.906   Mean   : 5.686   Mean   : 468.48  
+                    3rd Qu.: 43.581   3rd Qu.: 6.258   3rd Qu.: 461.73  
+                    Max.   :413.600   Max.   :47.598   Max.   :5296.23  
+     Diet             Passerine        Aquatic      
+ Length:54          Min.   :0.000   Min.   :0.0000  
+ Class :character   1st Qu.:0.000   1st Qu.:0.0000  
+ Mode  :character   Median :0.000   Median :0.0000  
+                    Mean   :0.463   Mean   :0.2778  
+                    3rd Qu.:1.000   3rd Qu.:1.0000  
+                    Max.   :1.000   Max.   :1.0000  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># updating binary and categorical variables to factors in R;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>bird <span class="ot">&lt;-</span> bird <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(Family, Diet, Passerine, Aquatic), factor))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bird)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                             Family      MaxAbund          AvgAbund     
+ Owls                           : 2   Min.   :  0.200   Min.   : 0.200  
+ Anhingas                       : 1   1st Qu.:  5.402   1st Qu.: 1.340  
+ Auks&amp; Puffins                  : 1   Median : 24.147   Median : 3.114  
+ Babblers                       : 1   Mean   : 44.906   Mean   : 5.686  
+ Blackbirds &amp; Orioles           : 1   3rd Qu.: 43.581   3rd Qu.: 6.258  
+ Cardinals&amp; Buntings&amp; Grosbreaks: 1   Max.   :413.600   Max.   :47.598  
+ (Other)                        :47                                     
+      Mass                  Diet    Passerine Aquatic
+ Min.   :   5.30   Insect     :20   0:29      0:39   
+ 1st Qu.:  20.68   InsectVert : 2   1:25      1:15   
+ Median :  59.18   Plant      : 2                    
+ Mean   : 468.48   PlantInsect:18                    
+ 3rd Qu.: 461.73   Vertebrate :12                    
+ Max.   :5296.23                                     
+                                                     </code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># writing our own summary functions;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mysummary <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">na.omit=</span><span class="cn">FALSE</span>){                </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> x[<span class="sc">!</span><span class="fu">is.na</span>(x)]                </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)  </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  median <span class="ot">&lt;-</span> <span class="fu">median</span>(x)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)                </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)                </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  skew <span class="ot">&lt;-</span> <span class="fu">sum</span>((x<span class="sc">-</span>m)<span class="sc">^</span><span class="dv">3</span><span class="sc">/</span>s<span class="sc">^</span><span class="dv">3</span>)<span class="sc">/</span>n                </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  kurt <span class="ot">&lt;-</span> <span class="fu">sum</span>((x<span class="sc">-</span>m)<span class="sc">^</span><span class="dv">4</span><span class="sc">/</span>s<span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span>n <span class="sc">-</span> <span class="dv">3</span>                </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(<span class="at">n=</span>n, <span class="at">mean=</span>m, <span class="at">stdev=</span>s, <span class="at">skew=</span>skew, <span class="at">kurtosis=</span>kurt))}</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(bird[,<span class="fu">c</span>(<span class="st">"MaxAbund"</span>, <span class="st">"AvgAbund"</span>, <span class="st">"Mass"</span>)],mysummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          MaxAbund  AvgAbund       Mass
+n        54.000000 54.000000  54.000000
+mean     44.905769  5.686179 468.475673
+stdev    73.468869  8.249669 945.410448
+skew      3.167159  3.243436   3.146062
+kurtosis 11.124409 11.820367  11.396989</code></pre>
+</div>
+</div>
+<ul>
+<li>We can use the <code>describe.by()</code> function from the <code>psych</code> package to generate summary statistics by group</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'psych' was built under R version 4.2.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'psych'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:ggplot2':
+
+    %+%, alpha</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe.by</span>(bird[,<span class="fu">c</span>(<span class="st">"MaxAbund"</span>, <span class="st">"AvgAbund"</span>, <span class="st">"Mass"</span>)], bird<span class="sc">$</span>Diet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: describe.by is deprecated. Please use the describeBy function</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Descriptive statistics by group 
+group: Insect
+         vars  n   mean     sd median trimmed   mad min     max   range skew
+MaxAbund    1 20  33.34  40.38  17.94   25.38 21.49 0.2  157.88  157.68 1.61
+AvgAbund    2 20   3.80   3.35   3.16    3.30  2.71 0.2   12.09   11.89 1.13
+Mass        3 20 251.97 583.01  23.87   95.50 26.83 5.3 2400.00 2394.70 2.66
+         kurtosis     se
+MaxAbund     2.10   9.03
+AvgAbund     0.18   0.75
+Mass         6.51 130.36
+------------------------------------------------------------ 
+group: InsectVert
+         vars n   mean     sd median trimmed    mad   min    max  range skew
+MaxAbund    1 2   3.42   1.57   3.42    3.42   1.64  2.32   4.53   2.22    0
+AvgAbund    2 2   1.83   1.60   1.83    1.83   1.68  0.70   2.96   2.26    0
+Mass        3 2 185.68 183.59 185.68  185.68 192.47 55.86 315.50 259.64    0
+         kurtosis     se
+MaxAbund    -2.75   1.11
+AvgAbund    -2.75   1.13
+Mass        -2.75 129.82
+------------------------------------------------------------ 
+group: Plant
+         vars n  mean    sd median trimmed   mad   min    max  range skew
+MaxAbund    1 2 28.15 18.78  28.15   28.15 19.68 14.88  41.43  26.55    0
+AvgAbund    2 2  3.99  1.33   3.99    3.99  1.39  3.04   4.93   1.88    0
+Mass        3 2 81.19 83.98  81.19   81.19 88.04 21.81 140.58 118.77    0
+         kurtosis    se
+MaxAbund    -2.75 13.28
+AvgAbund    -2.75  0.94
+Mass        -2.75 59.38
+------------------------------------------------------------ 
+group: PlantInsect
+         vars  n   mean     sd median trimmed   mad   min     max   range skew
+MaxAbund    1 18  69.81 102.60  30.77   52.29 18.46  6.34  413.60  407.26 2.29
+AvgAbund    2 18   8.36  10.95   5.01    6.35  3.15  1.34   47.60   46.26 2.63
+Mass        3 18 143.39 314.43  32.55   89.04 27.79 12.18 1144.29 1132.11 2.36
+         kurtosis    se
+MaxAbund     4.48 24.18
+AvgAbund     6.38  2.58
+Mass         4.07 74.11
+------------------------------------------------------------ 
+group: Vertebrate
+         vars  n    mean      sd median trimmed    mad    min     max   range
+MaxAbund    1 12   36.53   72.04   4.58   18.26   6.07   0.20  255.65  255.45
+AvgAbund    2 12    5.74   10.08   0.93    3.69   0.99   0.20   31.80   31.60
+Mass        3 12 1428.61 1502.42 983.01 1172.78 780.58 119.37 5296.23 5176.85
+         skew kurtosis     se
+MaxAbund 2.29     4.16  20.79
+AvgAbund 1.63     1.17   2.91
+Mass     1.39     0.95 433.71</code></pre>
+</div>
+</div>
+<ul>
+<li>Frequency counts for categorical variables</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(bird<span class="sc">$</span>Diet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Insect  InsectVert       Plant PlantInsect  Vertebrate 
+         20           2           2          18          12 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(bird<span class="sc">$</span>Diet, bird<span class="sc">$</span>Aquatic) <span class="co">#diet by whether or not the bird lives on or around water;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             
+               0  1
+  Insect      14  6
+  InsectVert   1  1
+  Plant        2  0
+  PlantInsect 17  1
+  Vertebrate   5  7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(<span class="sc">~</span>Diet <span class="sc">+</span> Aquatic, <span class="at">data =</span> bird)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Aquatic
+Diet           0  1
+  Insect      14  6
+  InsectVert   1  1
+  Plant        2  0
+  PlantInsect 17  1
+  Vertebrate   5  7</code></pre>
+</div>
+</div>
+<ul>
+<li>(Visual) Bar display of Abundance distribution</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bird) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>Diet, <span class="at">y=</span>AvgAbund, <span class="at">fill =</span> Aquatic), </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">stat=</span><span class="st">"identity"</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="session3_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>Measures of independence between</p></li>
+<li><p>testing independence of the categorical variables</p>
+<ul>
+<li>chi-square test</li>
+<li>Fisher exact</li>
+<li>Cochran-Mantel–Haenszel (taking into account of confounding from a third variable)</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># testing independence between Diet and Aquatic;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>mytable <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span>Diet <span class="sc">+</span> Aquatic, <span class="at">data =</span> bird)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(mytable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in chisq.test(mytable): Chi-squared approximation may be incorrect</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  mytable
+X-squared = 11.326, df = 4, p-value = 0.02313</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(mytable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Fisher's Exact Test for Count Data
+
+data:  mytable
+p-value = 0.01129
+alternative hypothesis: two.sided</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>mytable <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span>Diet <span class="sc">+</span> Aquatic <span class="sc">+</span> Passerine, <span class="at">data=</span>bird)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mantelhaen.test</span>(mytable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Cochran-Mantel-Haenszel test
+
+data:  mytable
+Cochran-Mantel-Haenszel M^2 = 3.2768, df = 4, p-value = 0.5126</code></pre>
+</div>
+</div>
+<ul>
+<li>Measures of correlations
+<ul>
+<li>variety of correlation coefficients, including Pearson, Spearman, Kendall
+<ul>
+<li>Pearson product moment correlation assesses the degree of <strong>linear relationship</strong> between two quantitative variables</li>
+<li>Spearman’s Rank Order correlation coefficient assesses the degree of relationship between two <strong>rank-ordered variables</strong> - <strong>nonparametric</strong></li>
+<li>Kendall’s Tau is also a <strong>nonparametric</strong> measure of rank correlation</li>
+</ul></li>
+<li>we can also view correlation descriptively using correlation plots</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>cont_var <span class="ot">&lt;-</span> bird[,<span class="fu">c</span>(<span class="st">"MaxAbund"</span>, <span class="st">"AvgAbund"</span>, <span class="st">"Mass"</span>)]</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(cont_var, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          MaxAbund  AvgAbund      Mass
+MaxAbund 1.0000000 0.8828926 0.1851167
+AvgAbund 0.8828926 1.0000000 0.1661142
+Mass     0.1851167 0.1661142 1.0000000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(cont_var, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           MaxAbund   AvgAbund       Mass
+MaxAbund  1.0000000  0.9447282 -0.3262117
+AvgAbund  0.9447282  1.0000000 -0.3333778
+Mass     -0.3262117 -0.3333778  1.0000000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(cont_var, <span class="at">method =</span> <span class="st">"kendall"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           MaxAbund   AvgAbund       Mass
+MaxAbund  1.0000000  0.8097902 -0.2320867
+AvgAbund  0.8097902  1.0000000 -0.2376791
+Mass     -0.2320867 -0.2376791  1.0000000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># testing correlation significance;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(bird<span class="sc">$</span>MaxAbund, bird<span class="sc">$</span>Mass, <span class="at">method =</span> <span class="st">"pearson"</span>, <span class="at">alternative =</span> <span class="st">"two.side"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  bird$MaxAbund and bird$Mass
+t = 1.3584, df = 52, p-value = 0.1802
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.08695387  0.43148965
+sample estimates:
+      cor 
+0.1851167 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(bird<span class="sc">$</span>MaxAbund, bird<span class="sc">$</span>Mass, <span class="at">method =</span> <span class="st">"spearman"</span>, <span class="at">alternative =</span> <span class="st">"two.side"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Spearman's rank correlation rho
+
+data:  bird$MaxAbund and bird$Mass
+S = 34793, p-value = 0.01607
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+       rho 
+-0.3262117 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(bird<span class="sc">$</span>MaxAbund, bird<span class="sc">$</span>Mass, <span class="at">method =</span> <span class="st">"kendall"</span>, <span class="at">alternative =</span> <span class="st">"two.side"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kendall's rank correlation tau
+
+data:  bird$MaxAbund and bird$Mass
+z = -2.4769, p-value = 0.01325
+alternative hypothesis: true tau is not equal to 0
+sample estimates:
+       tau 
+-0.2320867 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">cor</span>(cont_var, <span class="at">method =</span> <span class="st">"pearson"</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(M, </span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">method=</span><span class="st">"circle"</span>,</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">type =</span> <span class="fu">c</span>(<span class="st">"upper"</span>),</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.srt=</span><span class="dv">45</span>) <span class="co">#Text label color and rotation; </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="session3_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>T-test, comparison of groups</p></li>
+<li><p>A two-group independent t-test can be used to test the hypothesis that the two population means are equal</p></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">t.test</span>(MaxAbund <span class="sc">~</span> Aquatic, <span class="at">data=</span>bird)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  MaxAbund by Aquatic
+t = 0.46858, df = 30.457, p-value = 0.6427
+alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
+95 percent confidence interval:
+ -32.55446  51.95678
+sample estimates:
+mean in group 0 mean in group 1 
+       47.60054        37.89937 </code></pre>
+</div>
+</div>
+<ul>
+<li>Nonparametric tests of group difference
+<ul>
+<li>If you’re unable to meet the parametric assumptions of a t-test or ANOVA, you can turn to nonparametric approaches,
+<ul>
+<li>Thomogeneity of variance (i.e., the variability of the data in each group is similar).</li>
+<li>The distribution is approximately normal.</li>
+</ul></li>
+<li>e.g.&nbsp;Wilcoxon rank sum test (more popularly known as the Mann–Whitney U test)</li>
+<li>whether the observations are sampled from the same probability distribution (that is, whether the probability of obtaining higher scores is greater in one population than the other)</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(MaxAbund <span class="sc">~</span> Aquatic, <span class="at">data=</span>bird) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  MaxAbund by Aquatic
+W = 324.5, p-value = 0.543
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+</div>
+<ul>
+<li>Comparing more than two groups
+<ul>
+<li>ANOVA</li>
+<li>Kruskal-Wallis test, <strong>nonparametric</strong></li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>res.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(MaxAbund <span class="sc">~</span> Diet, <span class="at">data=</span>bird)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res.aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)
+Diet         4  18688    4672   0.856  0.497
+Residuals   49 267389    5457               </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(MaxAbund <span class="sc">~</span> Diet, <span class="at">data=</span>bird)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  MaxAbund by Diet
+Kruskal-Wallis chi-squared = 8.6127, df = 4, p-value = 0.07154</code></pre>
+</div>
+</div>
+</section>
+<section id="linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="linear-regression">3.2 Linear regression</h2>
+<p><strong>What is regression?</strong></p>
+<ul>
+<li><p>using one or more predictor variables to model the distribution of one or more outcome variables</p></li>
+<li><p>For a continuous outcome, we typically fit a linear regression model.</p>
+<ul>
+<li>Of course the relationship between outcome and predictors can be non-linear, in this case, we would consider fitting polynomial regression models or splines.</li>
+</ul></li>
+<li><p>For a categorical outcome, we will fit a generalized linear regression. We will cover this topic in future sessions.</p></li>
+<li><p>For a repeatedly measured outcome, we can fit a linear mixed-effect model (continuous outcome) or a generalized linear mixed-effect model (categorical outcome).</p></li>
+</ul>
+<section id="normal-models-and-linear-regression" class="level3">
+<h3 class="anchored" data-anchor-id="normal-models-and-linear-regression">Normal Models and Linear Regression</h3>
+<div class="callout-tip callout callout-style-simple callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Conditional normal model
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Given its mean and variance, an observation has a normal distribution</li>
+</ul>
+<p><span class="math display">\[ Y_i \mid \mu_i, \sigma^2_i \sim N( \mu_i, \sigma^2_i) \]</span></p>
+<ul>
+<li>This is equivalent to the following statements</li>
+</ul>
+<p><span class="math display">\[ Y_i = \mu_i + e_i , \ e_i \sim N(0, \sigma^2) \]</span></p>
+<ul>
+<li><p>We do not assume the collection of <span class="math inline">\(Y_i, i=1, \ldots, n\)</span> have a normal distribution</p></li>
+<li><p>Instead we assume the error term is normally distributed - a lesser assumption!</p></li>
+<li><p>In case of multiple predictors, <span class="math inline">\(\mu_i\)</span> becomes a weighted average of the <span class="math inline">\(\beta_j\)</span> values, the regression coefficient with <span class="math inline">\(x_{ij}\)</span> denoting the predictors. For example, for two covariates we have</p></li>
+</ul>
+<p><span class="math display">\[ E(y_i) = \mu_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} \]</span></p>
+<ul>
+<li>A polynomial regression model of 2 degrees on <span class="math inline">\(x_{i1}\)</span></li>
+</ul>
+<p><span class="math display">\[ \mu_i = \beta_0 + \beta_1 x_{i1} +  \beta_2 x_{i2} + \beta_3 x_{i1}^2 \]</span></p>
+<ul>
+<li>Assumptions of linear regression models
+<ol type="1">
+<li><strong>Independent observations</strong></li>
+<li><strong>Linear relationship</strong> We can check this assumption by examining marginal plots comparing the model predicted relationship between outcome and each continuous predictor and by examining the residual plot.</li>
+<li><strong>Normality of the residuals</strong></li>
+<li><strong>Homoscedasticity</strong> Homoscedasticity in a model means that the residual is constant along the values of the dependent variable.</li>
+<li><strong>Multicollinearity</strong> Multicollinearity is the phenomenon when a number of the explanatory variables are strongly correlated.</li>
+<li><strong>Correctly specified regression model</strong> This means that all relevant predictors for the response variable have been included in the model. This is often difficult to verify, but we can use posterior predictive distribution to check for regression fit.</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<ul>
+<li>Example: Suppose we are interested to study the linear relationship between abundance and mass</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear regression of maximum abundance against mass</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(MaxAbund <span class="sc">~</span> Mass, <span class="at">data =</span> bird)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = MaxAbund ~ Mass, data = bird)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-79.30 -35.39 -22.06   2.62 373.72 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept) 38.16646   11.09065   3.441  0.00115 **
+Mass         0.01439    0.01059   1.358  0.18021   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 72.89 on 52 degrees of freedom
+Multiple R-squared:  0.03427,   Adjusted R-squared:  0.0157 
+F-statistic: 1.845 on 1 and 52 DF,  p-value: 0.1802</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify regression assumptions using diagnostic plots</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="session3_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>Plot 1, Residuals vs Fitted shares information about the independence assumption</p>
+<ul>
+<li>residuals should scattered randomly around the line of 0
+<ul>
+<li>indicating linear relationship and the mean of the residuals is 0.</li>
+</ul></li>
+<li>residuals form an approximate horizontal band around the 0 line
+<ul>
+<li>indicating homogeneous</li>
+</ul></li>
+<li>If the residuals are organized in a funnel shape, the residuals are not homoscedastic.</li>
+</ul></li>
+<li><p>Plot 2, QQ plot, assessing normality</p></li>
+<li><p>Plot 3, Scale location checks for residual variability and dispersion - homoscedasticity</p>
+<ul>
+<li>a visble trend is problematic</li>
+</ul></li>
+<li><p>Plot 4, Residuals vs Leverage is used to identify influential observations, in other words, outliers.</p></li>
+</ul>
+<!-- Based on the insights gained in the previous sections, there are serious problems with these diagnostic plots. * Plots 1 and 2 shows strong trends, * Plot 3 shows that the residuals do not follow a normal distribution, * Plot 4 highlights the leverage of point 32 and its very high influence. -->
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># testing normality of residuals using Shapiro-Wilk test;</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The Shapiro-Wilk test compares the distribution of the observed data to a normal distribution. </span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">residuals</span>(m1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  residuals(m1)
+W = 0.64158, p-value = 0.0000000003172</code></pre>
+</div>
+</div>
+<ul>
+<li>Update model
+<ul>
+<li>potential strategies: log-transform data, fitting non-linear regression</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># log-transform the variables</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>bird<span class="sc">$</span>logMaxAbund <span class="ot">&lt;-</span> <span class="fu">log10</span>(bird<span class="sc">$</span>MaxAbund)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>bird<span class="sc">$</span>logMass <span class="ot">&lt;-</span> <span class="fu">log10</span>(bird<span class="sc">$</span>Mass)</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logMaxAbund <span class="sc">~</span> logMass, <span class="at">data =</span> bird)</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = logMaxAbund ~ logMass, data = bird)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.93562 -0.39982  0.05487  0.40625  1.61469 
+
+Coefficients:
+            Estimate Std. Error t value     Pr(&gt;|t|)    
+(Intercept)   1.6724     0.2472   6.767 0.0000000117 ***
+logMass      -0.2361     0.1170  -2.019       0.0487 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.6959 on 52 degrees of freedom
+Multiple R-squared:  0.07267,   Adjusted R-squared:  0.05484 
+F-statistic: 4.075 on 1 and 52 DF,  p-value: 0.04869</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="session3_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>we observed improvement!</p>
+</blockquote>
+<ul>
+<li>Beyond simple linear regression one can fit multivariate regression</li>
+<li>In multivariate regression, model building also need to consider variable selection and model fit
+<ul>
+<li>stepwise model selection, forward/backward, LASSO</li>
+<li>AIC, BIC</li>
+</ul></li>
+</ul>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
